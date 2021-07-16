@@ -1,27 +1,13 @@
-import randomstring from "randomstring";
-
-export default {
-  getInput() {
-    let alphaNumerics = randomstring.generate({
-      charset: "alphanumeric",
-    });
-    let alphabetics = randomstring.generate({
-      charset: "alphabetic",
-    });
-    let integer = randomstring.generate({
-      charset: "numeric",
-    });
-    return `${alphaNumerics},${alphabetics},${integer}`;
+import axios from "axios";
+import config from "../utils/config";
+const exportedObject = {
+  async generateString() {
+    let response = await axios.post(`${config.API_HOST}/api/generate`);
+    return response.data;
   },
-  generate_random_data1(size) {
-    var chars = "abcdefghijklmnopqrstuvwxyz".split("");
-    var len = chars.length;
-    var random_data = [];
-
-    while (size--) {
-      random_data.push(chars[(Math.random() * len) | 0]);
-    }
-
-    return random_data.join("");
+  async generateReport(fileName) {
+    let response = await axios.get(`${config.API_HOST}/api/report/${fileName}`);
+    return response.data;
   },
 };
+export default exportedObject;
