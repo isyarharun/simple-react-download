@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# simple-react-download
 
 This project is a frontend for simple-react-download-service, bootstrapped with [Create React App](https://github.com/facebook/create-react-app). In this UI user can generate a string files for 2MB size, download it from the UI and view the report directly from the UI.
 
@@ -15,5 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Settings
 
-The settings file can be found in src/utils/config.js
+The settings file can be found in src/utils/config.js.\
+The default API url for now is http://localhost:3300\
+You can change the URL but please make sure to also change the port in the service
 
