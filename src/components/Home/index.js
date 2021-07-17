@@ -13,14 +13,18 @@ const Home = (props) => {
   const [downloadLink, setDownloadLink] = useState("");
   const [fileName, setFileName] = useState("");
   const [report, setReport] = useState(initialReport);
+  const [loading, setLoading] = useState(false);
 
   const generateString = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let result = await Api.generateString();
     if (result.fileName) {
       setFileName(result.fileName);
       setDownloadLink(`${config.API_HOST}/api/download/${result.fileName}`);
+      setReport(initialReport);
     }
+    setLoading(false);
   };
   const generateReport = async (e) => {
     e.preventDefault();
@@ -34,7 +38,8 @@ const Home = (props) => {
           <span>Generate</span>
         </button>
       </div>
-      {fileName.length > 0 && (
+      {loading && <div>Generating, Please Wait ...</div>}
+      {fileName.length > 0 && !loading && (
         <div>
           <div>
             <a href={downloadLink} download>
